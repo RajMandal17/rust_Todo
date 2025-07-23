@@ -1,0 +1,100 @@
+Rust Todo API with MariaDB - Complete Notes for Java Developers
+===============================================================
+
+1. Prerequisites
+----------------
+- Install Rust toolchain: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+- Install MariaDB server and start it
+- Create database and table:
+  ```sql
+
+  
+  CREATE DATABASE todo_db;
+  USE todo_db;
+  CREATE TABLE todos (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      completed BOOLEAN NOT NULL DEFAULT FALSE
+  );
+  ```
+- Add dependencies in `Cargo.toml`:
+  ```
+  mysql, serde, serde_json, warp, tokio
+  ```
+
+2. Project Structure
+-------------------
+- `src/main.rs`: Entry point, sets up API routes
+- `src/models/todo.rs`: Todo struct (model)
+- `src/routes/todo_routes.rs`: CRUD functions
+- `src/models/mod.rs`, `src/routes/mod.rs`: Module declarations
+
+3. DB Connection
+----------------
+- Rust: `mysql` crate, `Pool`, `PooledConn`
+- Java: JDBC, DataSource
+
+4. Model Definition
+-------------------
+- Rust: `struct Todo` with `#[derive(Debug, Serialize, Deserialize, Clone)]`
+- Java: POJO with getters/setters, `@Entity`, `@Table`
+
+5. CRUD Operations
+------------------
+- Rust: Functions for add, list, update, delete todos using SQL queries
+- Java: Methods using `PreparedStatement` and `ResultSet`
+
+6. API Framework
+----------------
+- Rust: `warp` (async, filters, handlers)
+- Java: Spring Boot (`@RestController`, `@GetMapping`, etc.)
+
+7. Async Programming
+--------------------
+- Rust: `tokio` runtime, `async`/`await`
+- Java: `CompletableFuture`, `WebFlux`
+
+8. Error Handling
+-----------------
+- Rust: `Result`, `expect`, `unwrap`
+- Java: try/catch, exceptions
+
+9. Endpoints
+------------
+- `GET /todos`: List all todos
+- `POST /todos`: Add a todo (JSON)
+- `PUT /todos/{id}`: Mark complete
+- `DELETE /todos/{id}`: Delete todo
+
+10. Example curl requests
+------------------------
+- Add:    `curl -X POST -H "Content-Type: application/json" -d '{"id":0,"title":"Learn Rust","completed":false}' http://localhost:3030/todos`
+- List:   `curl http://localhost:3030/todos`
+- Update: `curl -X PUT http://localhost:3030/todos/1`
+- Delete: `curl -X DELETE http://localhost:3030/todos/1`
+
+11. Summary Table
+-----------------
+| Feature         | Rust (this app)         | Java (Spring Boot)         |
+|-----------------|------------------------|----------------------------|
+| DB Connect      | mysql crate, Pool       | JDBC, DataSource           |
+| Model           | struct, derive traits   | POJO, annotations          |
+| API Framework   | warp                   | Spring Boot, JAX-RS        |
+| Async           | tokio                   | CompletableFuture, WebFlux |
+| Error Handling  | Result, expect          | try/catch, exceptions      |
+
+12. Practice Questions
+----------------------
+- How does Rust's error handling differ from Java's?
+- What crate is used for HTTP APIs in Rust?
+- How do you serialize/deserialize data in Rust vs Java?
+- How do you structure a Rust project for web APIs?
+- What is the equivalent of Rust's struct in Java?
+
+13. Key Takeaways
+-----------------
+- Rust and Java share many backend concepts, but Rust enforces safety at compile time.
+- Rust's async and error handling are explicit and type-safe.
+- Project structure in Rust is modular, similar to Java packages.
+- `warp` is a powerful, minimal web framework for Rust APIs.
+- MariaDB integration in Rust is straightforward with the `mysql` crate.
