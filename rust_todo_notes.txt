@@ -83,13 +83,27 @@ Rust Todo API with MariaDB - Complete Notes for Java Developers
 | Async           | tokio                   | CompletableFuture, WebFlux |
 | Error Handling  | Result, expect          | try/catch, exceptions      |
 
-12. Practice Questions
-----------------------
+12. Practice Questions (with Answers)
+------------------------------------
 - How does Rust's error handling differ from Java's?
+  > Rust uses the `Result` and `Option` types for error handling, making errors explicit and checked at compile time.
+   Java uses exceptions (`try/catch`), which are checked at runtime and can be missed if not handled.
+
 - What crate is used for HTTP APIs in Rust?
+  > The `warp` crate is used for building HTTP APIs in Rust (other options include `actix-web`, `rocket`).
+
 - How do you serialize/deserialize data in Rust vs Java?
+  > Rust uses the `serde` crate with `#[derive(Serialize, Deserialize)]` for automatic JSON (and other formats) conversion.
+   Java uses libraries like Jackson or Gson with annotations like `@JsonSerialize` and `@JsonDeserialize`.
+
 - How do you structure a Rust project for web APIs?
+  > Rust projects are organized with modules (folders like `models`, `routes`), each containing related code.
+   The entry point is `main.rs`, and modules are declared with `mod`. This is similar to Java's use of packages for models,
+    controllers, etc.
+
 - What is the equivalent of Rust's struct in Java?
+  > Rust's `struct` is equivalent to a Java POJO (Plain Old Java Object) or a class with fields and methods,
+   e.g. `public class Todo { ... }`.
 
 13. Key Takeaways
 -----------------
